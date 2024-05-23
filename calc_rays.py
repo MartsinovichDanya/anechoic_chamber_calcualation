@@ -15,6 +15,13 @@ ANT_POINT = (0, 0, 0)
 """
 
 
+def sign(a):
+    if a >= 0:
+        return 1
+    if a < 0:
+        return -1
+
+
 def calc_ray_len(start, end):
     ray_len = cmath.sqrt((end[0] - start[0])**2 + (end[1] - start[1])**2 + (end[2] - start[2])**2)
     return ray_len.real
@@ -35,14 +42,14 @@ def calc_dir_ray(mz_point):
 
 def calc_ray_1(mz_point):
     s_dir_xz = cmath.sqrt(CHL**2 + mz_point[2]**2)
-    phi_xz = cmath.acos(CHL/s_dir_xz)
+    phi_xz = sign(mz_point[2]) * cmath.acos(CHL / s_dir_xz)
     tan_phi_xz = cmath.tan(phi_xz)
 
     yc = CHH - mz_point[1]
     s_top_xy = cmath.sqrt(CHL**2 + yc**2)
     phi_top_xy = cmath.acos(CHL/s_top_xy)
 
-    xp = (2 * CHL)/(CHH * yc)
+    xp = (CHH * CHL)/(2 * (CHH - abs(yc)))
     yp = CHH / 2
     zp = (xp * tan_phi_xz).real
     p = (xp, yp, zp)
@@ -63,14 +70,14 @@ def calc_ray_1(mz_point):
 
 def calc_ray_2(mz_point):
     s_dir_xz = cmath.sqrt(CHL ** 2 + mz_point[2] ** 2)
-    phi_xz = cmath.acos(CHL / s_dir_xz)
+    phi_xz = sign(mz_point[2]) * cmath.acos(CHL / s_dir_xz)
     tan_phi_xz = cmath.tan(phi_xz)
 
     yd = -CHH - mz_point[1]
     s_bottom_xy = cmath.sqrt(CHL ** 2 + yd ** 2)
     phi_bottom_xy = cmath.acos(CHL / s_bottom_xy)
 
-    xp = (2 * CHL) / ((-CHH) * yd)
+    xp = (CHH * CHL)/(2 * (CHH + abs(yd)))
     yp = -CHH / 2
     zp = (xp * tan_phi_xz).real
     p = (xp, yp, zp)
@@ -91,14 +98,14 @@ def calc_ray_2(mz_point):
 
 def calc_ray_3(mz_point):
     s_dir_xy = cmath.sqrt(CHL ** 2 + mz_point[1] ** 2)
-    phi_xy = cmath.acos(CHL / s_dir_xy)
+    phi_xy = sign(mz_point[1]) * cmath.acos(CHL / s_dir_xy)
     tan_phi_xy = cmath.tan(phi_xy)
 
     ze = CHW - mz_point[2]
     s_right_xz = cmath.sqrt(CHL ** 2 + ze ** 2)
     phi_right_xz = cmath.acos(CHL / s_right_xz)
 
-    xp = (2 * CHL) / (CHW * ze)
+    xp = (CHW * CHL) / (2 * (CHW - abs(ze)))
     yp = (xp * tan_phi_xy).real
     zp = CHW / 2
     p = (xp, yp, zp)
@@ -119,14 +126,14 @@ def calc_ray_3(mz_point):
 
 def calc_ray_4(mz_point):
     s_dir_xy = cmath.sqrt(CHL ** 2 + mz_point[1] ** 2)
-    phi_xy = cmath.acos(CHL / s_dir_xy)
+    phi_xy = sign(mz_point[1]) * cmath.acos(CHL / s_dir_xy)
     tan_phi_xy = cmath.tan(phi_xy)
 
     zf = -CHW - mz_point[2]
     s_left_xz = cmath.sqrt(CHL ** 2 + zf ** 2)
     phi_left_xz = cmath.acos(CHL / s_left_xz)
 
-    xp = (2 * CHL) / ((-CHW) * zf)
+    xp = (CHW * CHL) / (2 * (CHW + abs(zf)))
     yp = (xp * tan_phi_xy).real
     zp = -CHW / 2
     p = (xp, yp, zp)

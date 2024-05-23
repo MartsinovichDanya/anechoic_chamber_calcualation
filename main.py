@@ -47,18 +47,18 @@ for y in np.arange(mz_y_lims[0], mz_y_lims[1], LAMBDA/2):
 counter = 0
 anec_coef_arr = []
 for mp in mesure_points:
-    dir_ray = calc_dir_ray(mp.pos)
-    mp.rays_data["dir"] = dir_ray
-    ray1 = calc_ray_1(mp.pos)
-    mp.rays_data["ray1"] = ray1
-    ray2 = calc_ray_2(mp.pos)
-    mp.rays_data["ray2"] = ray2
-    ray3 = calc_ray_3(mp.pos)
-    mp.rays_data["ray3"] = ray3
-    ray4 = calc_ray_4(mp.pos)
-    mp.rays_data["ray4"] = ray4
-
     try:
+        dir_ray = calc_dir_ray(mp.pos)
+        mp.rays_data["dir"] = dir_ray
+        ray1 = calc_ray_1(mp.pos)
+        mp.rays_data["ray1"] = ray1
+        ray2 = calc_ray_2(mp.pos)
+        mp.rays_data["ray2"] = ray2
+        ray3 = calc_ray_3(mp.pos)
+        mp.rays_data["ray3"] = ray3
+        ray4 = calc_ray_4(mp.pos)
+        mp.rays_data["ray4"] = ray4
+
         e_amp_dir = calc_e_amp_dir(dir_ray["ray_phi_proj_xz"], dir_ray["ray_phi_proj_xy"], dir_ray["ray_len"])
         e_amp_refl_arr = [
             calc_e_amp_refl(ray1["ray_phi_proj_xz"], ray1["ray_phi_proj_xy"], ray1["ray_len"], ray1["ray_phi"]),
