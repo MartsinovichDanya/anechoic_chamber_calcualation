@@ -1,1 +1,0 @@
-# anechoic_chamber_calcualation
