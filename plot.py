@@ -35,13 +35,13 @@ dir_amp_map = []
 refl_amp_map = []
 coef_map = []
 
-for y in np.arange(mz_y_lims[0], mz_y_lims[1], LAMBDA/2):
+for y in np.arange(mz_y_lims[0], mz_y_lims[1], LAMBDA/4):
     if round(float(y), 3) == 0:
         continue
     y_temp_dir = []
     y_temp_refl = []
     y_temp_coef = []
-    for z in np.arange(mz_z_lims[0], mz_z_lims[1], LAMBDA/2):
+    for z in np.arange(mz_z_lims[0], mz_z_lims[1], LAMBDA/4):
         if round(float(z), 3) == 0:
             continue
 
